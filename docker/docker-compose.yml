@@ -8,7 +8,7 @@ services:
       context: ..
     container_name: ms-catalogo
     ports:
-      - "5001:5000"  # El contenedor expone el puerto 5001
+      - "5001:5001"  # El contenedor expone el puerto 5001
     networks:
       - ecommerce-network
 
