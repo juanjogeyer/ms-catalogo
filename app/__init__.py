@@ -7,9 +7,9 @@ db = SQLAlchemy()
 
 def create_app():
     app_context = os.getenv("FLASK_CONTEXT")
-    print(app_context)
+    print(f"app_context: {app_context}")
+
     app = Flask(__name__)
-    #app.config.from_object('app.config.Config')
     configuration = config[app_context if app_context else 'development']
     app.config.from_object(configuration)
     
