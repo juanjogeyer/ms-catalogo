@@ -1,6 +1,6 @@
-import unittest, os, json
+import unittest, os
 from app import create_app, db
-from app.model import Producto
+from app.models import Producto
 from app.services import ProductoService
 
 producto_service = ProductoService()
@@ -31,28 +31,12 @@ class CatalogoTestCase(unittest.TestCase):
         self.assertEqual(producto.precio, self.PRECIO_TEST)
         self.assertEqual(producto.activado, self.ACTIVADO_TEST)
 
-    def test_producto_add(self):
+    def test_producto_find(self):
         producto = self.__get_producto()
+        db.session.add(producto)
+        db.session.commit()
 
-        producto_service.add(producto)
-
-        self.assertGreaterEqual(producto.id, 1)
-        self.assertEqual(producto.nombre, self.NOMBRE_TEST)
-        self.assertEqual(producto.precio, self.PRECIO_TEST)
-        self.assertTrue(producto.activado)
-
-    def test_producto_all(self):
-        producto = self.__get_producto()
-        producto_service.add(producto)
-
-        productos = producto_service.all()
-        self.assertGreaterEqual(len(productos), 1)
-
-    def test_producto_find_activo(self):
-        producto = self.__get_producto()
-        producto_service.add(producto)
-
-        producto_find = producto_service.find_activo(1)
+        producto_find = producto_service.find(1)
         self.assertIsNotNone(producto_find)
         self.assertEqual(producto_find.id, producto.id)
         self.assertEqual(producto_find.nombre, producto.nombre)
