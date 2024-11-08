@@ -1,7 +1,7 @@
-from app.model import Producto
+from app.models import Producto
 from marshmallow import validate, fields, Schema, post_load
 
-class ProductSchema(Schema):
+class ProductoSchema(Schema):
     id = fields.Integer(dump_only=True)
     nombre = fields.String(required=True, validate=validate.Length(min=1, max=100))
     precio = fields.Float(required=True, validate=validate.Range(min=0))

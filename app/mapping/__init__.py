@@ -1,2 +1,2 @@
 from .response_schema import ResponseSchema
-from .product_schema import ProductSchema
+from .producto_schema import ProductoSchema
