@@ -1,2 +1,2 @@
-from .catalogo_service import ProductoService
+from .producto_service import ProductoService
 from .response_message import ResponseMessage
